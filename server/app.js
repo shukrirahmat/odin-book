@@ -1,9 +1,14 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const session = require("express-session");
+const passport = require("passport");
+const LocalStrategy = require('passport-local').Strategy;
 
 //MIDDLEWARE
-app.use(cors());
+app.use(cors({origin: 'http://localhost:5173'}));
+app.use(session({ secret: "cats", resave: false, saveUninitialized: false }));
+app.use(passport.session());
 app.use(express.urlencoded({ extended: true }));
 
 //ROUTES
